@@ -1,5 +1,5 @@
 [package]
-name = "rfb-rs"
+name = "rfb"
 version = "0.1.0"
 edition = "2021"
 authors = ["Leonardo de Paula Liebscher <leonardopx@gmail.com>"]

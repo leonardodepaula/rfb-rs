@@ -15,7 +15,7 @@ pub enum CPFError {
 }
 
 #[derive(Clone, Copy, Eq, PartialEq)]
-enum RegiaoFiscal {
+pub enum RegiaoFiscal {
     RF01,
     RF02,
     RF03,
@@ -75,7 +75,7 @@ fn get_regiao_fiscal(digitos: &Vec<u8>) -> anyhow::Result<RegiaoFiscal, CPFError
     }
 }
 
-fn parse<T: AsRef<str>>(cpf: T) -> anyhow::Result<CPF, CPFError> {
+pub fn parse<T: AsRef<str>>(cpf: T) -> anyhow::Result<CPF, CPFError> {
     let digitos: Vec<u8> = cpf.as_ref().chars().filter_map(|c| c.to_digit(10).map(|d| d as u8)).collect::<Vec<u8>>();
     
     if digitos.len() != 11 {
@@ -95,7 +95,7 @@ pub fn valid<T>(cpf: T) -> bool
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-struct CPF {
+pub struct CPF {
     digitos: Vec<u8>,
     regiao_fiscal: RegiaoFiscal
 }
@@ -186,5 +186,22 @@ impl FromStr for CPF {
 
     fn from_str(s: &str) -> anyhow::Result<Self, CPFError> {
         parse(s)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn generate_valid_cpf() {
+        let cpf = CPF::generate().unwrap();
+        assert!(valid(cpf.as_str()));
+    }
+
+    #[test]
+    fn generate_valid_cpf_for_regiao_fiscal() {
+        let cpf = CPF::generate_for_regiao_fiscal(RegiaoFiscal::RF01).unwrap();
+        assert_eq!(cpf.regiao_fiscal, RegiaoFiscal::RF01);
     }
 }
