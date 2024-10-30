@@ -1,0 +1,13 @@
+[package]
+name = "rfb-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Leonardo de Paula Liebscher <leonardopx@gmail.com>"]
+keywords = ["Brazil", "RFB", "CPF"]
+license = "MIT"
+repository = "https://github.com/leonardodepaula/rfb-rs"
+
+[dependencies]
+anyhow = "1.0.91"
+rand = "0.8.5"
+thiserror = "1.0.65"
