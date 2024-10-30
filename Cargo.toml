@@ -6,6 +6,7 @@ authors = ["Leonardo de Paula Liebscher <leonardopx@gmail.com>"]
 keywords = ["Brazil", "RFB", "CPF"]
 license = "MIT"
 repository = "https://github.com/leonardodepaula/rfb-rs"
+description = "An unnoficial crate to interact with features related to the Federal Revenue of Brazil (RFB)."
 
 [dependencies]
 anyhow = "1.0.91"
